@@ -1,4 +1,5 @@
 let defaultPath;
+let imgs;
 let imgBG;
 let imgFG;
 let dissolve;
@@ -9,11 +10,15 @@ function setup() {
   createCanvas(1000, 600);
   imageMode(CENTER);
 
+  imgs = [];
   fileNum = 0;
-  defaultPath = "assets/0/";
+  defaultPath = "0/";
 
-  imgBG = loadImage(`${defaultPath}${fileNum}.jpeg`);
-  imgFG = loadImage(`${defaultPath}${fileNum + 1}.jpeg`);
+  for (let i = 0; i < 8; i++) {
+    imgs.push(loadImage(`assets/${defaultPath}${i}.jpeg`));
+  }
+  imgBG = imgs[fileNum];
+  imgFG = imgs[fileNum + 1];
 
   dissolve = 0;
 }
@@ -25,17 +30,23 @@ function draw() {
 
   tint(255, dissolve);
   image(imgFG, width / 2, height / 2);
+
+  rect();
 }
 
 function mouseMoved() {
   if (dissolve != 255) {
     dissolve++;
   } else if (dissolve == 255) {
-    fileNum++;
     if (fileNum < 7) {
-      imgBG = loadImage(`${defaultPath}${fileNum}.jpeg`);
-      imgFG = loadImage(`${defaultPath}${fileNum + 1}.jpeg`);
+      fileNum++;
+    } else {
+      fileNum = 0;
     }
+
+    imgBG = imgs[fileNum];
+    imgFG = imgs[fileNum + 1];
+
     dissolve = 0;
   }
 }
