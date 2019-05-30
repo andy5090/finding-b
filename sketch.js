@@ -18,7 +18,7 @@ function setup() {
   fileNum = 0;
   reverse = false;
   defaultPath = "0/";
-  maxFileNum = 14;
+  maxFileNum = 26;
 
   for (let i = 0; i < maxFileNum; i++) {
     imgs.push(loadImage(`assets/${defaultPath}${i}.jpeg`));
