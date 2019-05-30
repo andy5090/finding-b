@@ -41,7 +41,7 @@ function draw() {
   imgFG.resize(windowWidth, windowHeight);
 
   if (dissolve < 255) {
-    dissolve += 10;
+    dissolve += 11;
   } else if (dissolve >= 255) {
     if (reverse) {
       fileNum--;
